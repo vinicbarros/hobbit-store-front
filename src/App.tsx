@@ -7,6 +7,7 @@ import FingerprintRoute from "./common/FingerprintRoute";
 import Home from "./pages/Home";
 import { GlobalStyle } from "./style/GlobalStyle";
 import Cart from "./pages/Cart";
+import ProductPage from "./pages/ProductPage";
 
 function App() {
   const queryClient = new QueryClient();
@@ -36,6 +37,10 @@ function App() {
             <Route
               path="/cart"
               element={<Cart />}
+            />
+            <Route
+              path="/products/product/:productId"
+              element={<ProductPage />}
             />
           </Route>
         </Routes>
