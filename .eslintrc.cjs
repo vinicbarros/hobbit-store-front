@@ -31,6 +31,7 @@ module.exports = {
     "no-empty-function": "off",
     "lines-between-class-members": "off",
     "no-use-before-define": "off",
+    "no-underscore-dangle": ["error", { allow: ["_id"] }],
     "no-multiple-empty-lines": [
       "error",
       {
