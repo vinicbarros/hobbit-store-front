@@ -1,6 +1,7 @@
 import { AxiosResponse } from "axios";
 import { createAuthHeader } from "../helpers/createAuthHeader";
 import { IFingerprintData } from "../types/cartType";
+import { ProductType } from "../types/productTypes";
 import api from "./api";
 
 // eslint-disable-next-line prettier/prettier
@@ -15,4 +16,11 @@ export async function postCart(productId: string) {
   const response = await api.post(`/cart/${productId}`, {}, config);
 
   return response;
+}
+
+export async function getCart(): Promise<ProductType[]> {
+  const config = createAuthHeader();
+  const response = await api.get("/cart", config);
+
+  return response.data as ProductType[];
 }
