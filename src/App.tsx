@@ -1,5 +1,8 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import styled from "styled-components";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import FingerprintRoute from "./common/FingerprintRoute";
 import Home from "./pages/Home";
 import { GlobalStyle } from "./style/GlobalStyle";
@@ -10,6 +13,18 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalStyle />
+      <StyledToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <BrowserRouter>
         <Routes>
           <Route element={<FingerprintRoute />}>
@@ -23,5 +38,18 @@ function App() {
     </QueryClientProvider>
   );
 }
+
+const StyledToastContainer = styled(ToastContainer)`
+  display: flex;
+  justify-content: flex-end;
+  .Toastify__toast {
+    width: 240px;
+  }
+  .Toastify__toast {
+  }
+  .Toastify__close-button {
+    width: 20px;
+  }
+`;
 
 export default App;
