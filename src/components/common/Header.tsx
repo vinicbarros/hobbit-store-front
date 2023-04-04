@@ -61,11 +61,13 @@ const ImageLogo = styled.img`
   height: 50px;
   margin-left: -10px;
   margin-right: 5px;
+  cursor: pointer;
 `;
 
 const CartBox = styled.div`
   display: flex;
   position: relative;
+  cursor: pointer;
 `;
 
 const CartNumber = styled.div`
