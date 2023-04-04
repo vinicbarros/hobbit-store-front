@@ -33,6 +33,6 @@ export const WrapperTitle = styled.h4`
   width: 90%;
   margin-inline: auto;
   color: #442e21;
-  margin-top: 110px;
+  padding-top: 110px;
   font-size: 20px;
 `;
