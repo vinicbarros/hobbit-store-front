@@ -1,70 +1,35 @@
 import styled from "styled-components";
-import { QueryClient, useMutation, useQueryClient } from "react-query";
-import { useState } from "react";
-import { toast } from "react-toastify";
-import { TailSpin } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
+import { QueryClient } from "react-query";
 import { ProductType } from "../../types/productTypes";
 import formattedValue from "../../helpers/formatValue";
-import { postCart } from "../../services/cartService";
+import AddToCartButton from "../Cart/AddToCartButton";
 
-export default function ShortProductComponent({
-  shortProduct,
-  queryClient,
-}: {
-  shortProduct: ProductType;
-  queryClient: QueryClient;
-}) {
-  const addToCartMutation = useMutation(
-    (productId: string) => {
-      return postCart(productId);
-    },
-    {
-      onSuccess: () => {
-        queryClient.refetchQueries("cart");
-      },
-    }
-  );
-  const [disable, setDisable] = useState(false);
-
-  const addToCart = async (productId: string) => {
-    setDisable(true);
-    try {
-      await addToCartMutation.mutateAsync(productId);
-      toast.success("Item adicionado ao carrinho!");
-      setDisable(false);
-    } catch (error) {
-      toast.error("Algo deu errado!");
-      setDisable(false);
-      console.log(error);
-    }
-  };
+export default function ShortProductComponent({ shortProduct }: { shortProduct: ProductType }) {
+  const navigate = useNavigate();
 
   return (
     <ShortProductWrapper>
       <Image
         src={shortProduct.image}
         alt="oi"
+        onClick={() => {
+          navigate(`/products/product/${shortProduct._id}`);
+        }}
       />
       <InfoBox>
-        <WrapBox>
+        <WrapBox
+          onClick={() => {
+            navigate(`/products/product/${shortProduct._id}`);
+          }}
+        >
           <InfoTitle>{shortProduct.name}</InfoTitle>
           <InfoPrice>{formattedValue(shortProduct.price)}</InfoPrice>
         </WrapBox>
         <AddToCartButton
-          disabled={disable}
-          onClick={() => {
-            addToCart(shortProduct._id);
-          }}
-        >
-          {disable ? (
-            <TailSpin
-              width="14px"
-              color="#ffffff"
-            />
-          ) : (
-            "Adicionar ao carrinho"
-          )}
-        </AddToCartButton>
+          page="products"
+          itemId={shortProduct._id}
+        />
       </InfoBox>
     </ShortProductWrapper>
   );
@@ -83,6 +48,7 @@ const ShortProductWrapper = styled.main`
 const Image = styled.img`
   width: 120px;
   border-radius: 5px 5px 0 0;
+  cursor: pointer;
 `;
 
 const InfoBox = styled.div`
@@ -96,6 +62,7 @@ const InfoBox = styled.div`
 
 const WrapBox = styled.div`
   margin-bottom: 5px;
+  cursor: pointer;
 `;
 
 const InfoTitle = styled.p`
@@ -107,21 +74,4 @@ const InfoTitle = styled.p`
 const InfoPrice = styled.p`
   margin-top: 5px;
   color: #4b965a;
-`;
-
-const AddToCartButton = styled.button`
-  border: none;
-  border-radius: 5px;
-  background-color: #644684;
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 11px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  &:disabled {
-    background-color: #432c5c;
-  }
 `;

@@ -1,11 +1,9 @@
-import { useQueryClient } from "react-query";
 import styled from "styled-components";
 import { ProductType } from "../../types/productTypes";
 import LoadingPage from "./LoadingPage";
 import ShortProductComponent from "./ShortProduct";
 
 export default function MappedProducts({ data }: { data: ProductType[] }) {
-  const queryClient = useQueryClient();
   return (
     <Wrapper>
       {data.length > 0 ? (
@@ -13,7 +11,6 @@ export default function MappedProducts({ data }: { data: ProductType[] }) {
           <ShortProductComponent
             key={product._id}
             shortProduct={product}
-            queryClient={queryClient}
           />
         ))
       ) : (
