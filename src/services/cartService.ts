@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { createAuthHeader } from "../helpers/createAuthHeader";
-import { IFingerprintData } from "../types/cartType";
+import { CartType, IFingerprintData } from "../types/cartType";
 import { ProductType } from "../types/productTypes";
 import api from "./api";
 
@@ -18,9 +18,15 @@ export async function postCart(productId: string) {
   return response;
 }
 
-export async function getCart(): Promise<ProductType[]> {
+export async function getCart(): Promise<CartType[]> {
   const config = createAuthHeader();
   const response = await api.get("/cart", config);
 
-  return response.data as ProductType[];
+  return response.data as CartType[];
+}
+
+export async function removeFromCart(_id: string) {
+  const config = createAuthHeader();
+
+  const response = await api.delete(`/cart/${_id}`, config);
 }
