@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 import FingerprintRoute from "./common/FingerprintRoute";
 import Home from "./pages/Home";
 import { GlobalStyle } from "./style/GlobalStyle";
+import Cart from "./pages/Cart";
 
 function App() {
   const queryClient = new QueryClient();
@@ -15,7 +16,7 @@ function App() {
       <GlobalStyle />
       <StyledToastContainer
         position="top-right"
-        autoClose={1000}
+        autoClose={500}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -31,6 +32,10 @@ function App() {
             <Route
               path="/"
               element={<Home />}
+            />
+            <Route
+              path="/cart"
+              element={<Cart />}
             />
           </Route>
         </Routes>

@@ -1,23 +1,31 @@
 import styled from "styled-components";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 import { RiShoppingCartLine } from "react-icons/ri";
 import Logo from "../../assets/images/Logo.png";
 import { SearchBar } from "../Searchbar/SearchBar";
 import { getCart } from "../../services/cartService";
 
 export default function Header() {
+  const navigate = useNavigate();
   const cartData = useQuery("cart", getCart);
-  console.log(cartData.data);
 
   return (
     <Container>
       <BoxWrap>
         <ImageLogo
+          onClick={() => {
+            navigate("/");
+          }}
           src={Logo}
           alt="Logo"
         />
         <SearchBar />
-        <CartBox>
+        <CartBox
+          onClick={() => {
+            navigate("/cart");
+          }}
+        >
           <RiShoppingCartLine
             style={{ color: "#ffffff", marginLeft: "10px" }}
             size={30}
