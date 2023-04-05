@@ -1,6 +1,7 @@
 import { AxiosError } from "axios";
 import { useQuery } from "react-query";
 import styled from "styled-components";
+import CategoryMap from "../components/Category/CategoryMap";
 import Header from "../components/common/Header";
 import LoadingPage from "../components/common/LoadingPage";
 import MappedProducts from "../components/common/MappedProducts";
@@ -24,6 +25,8 @@ export default function Home() {
     <>
       <Header />
       <WrapperTitle>Categorias</WrapperTitle>
+      <CategoryMap />
+      <ProductTitle>Produtos</ProductTitle>
       <MappedProducts data={productsData.data} />
     </>
   );
@@ -35,4 +38,13 @@ export const WrapperTitle = styled.h4`
   color: #442e21;
   padding-top: 110px;
   font-size: 20px;
+`;
+
+const ProductTitle = styled.h1`
+  width: 90%;
+  margin-inline: auto;
+  margin-bottom: 10px;
+  color: #442e21;
+  font-size: 30px;
+  font-weight: bold;
 `;
