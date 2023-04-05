@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import AddToCartButton from "../components/Cart/AddToCartButton";
@@ -10,7 +10,6 @@ import { getProduct } from "../services/productService";
 
 export default function ProductPage() {
   const { productId } = useParams();
-  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const getProductWithId = async () => {
@@ -24,7 +23,13 @@ export default function ProductPage() {
     onError: (err: AxiosError) => err,
   });
 
-  if (!data || isLoading) return <LoadingPage />;
+  if (!data || isLoading)
+    return (
+      <>
+        <Header />
+        <LoadingPage />
+      </>
+    );
 
   return (
     <>
@@ -121,14 +126,12 @@ const Button = styled.button<IButtonProps>`
   background-color: ${(props) => props.background};
   color: ${(props) => props.fontColor};
   font-family: "Poppins";
+  cursor: pointer;
 
   @media screen and (min-width: 600px) {
     max-width: 300px;
     align-self: flex-start;
-
-    & + & {
-      margin-left: 20px;
-    }
+    margin-right: 20px;
   }
 `;
 
