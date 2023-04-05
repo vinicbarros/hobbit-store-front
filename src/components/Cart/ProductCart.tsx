@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { TailSpin } from "react-loader-spinner";
 import { useMutation, useQueryClient } from "react-query";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 import formattedValue from "../../helpers/formatValue";
@@ -9,6 +10,7 @@ import { CartType } from "../../types/cartType";
 
 export default function ProductCart({ product }: { product: CartType }) {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const [disable, setDisable] = useState(false);
   const removeFromCartMutation = useMutation(
     (_id: string) => {
@@ -40,8 +42,15 @@ export default function ProductCart({ product }: { product: CartType }) {
         <Image
           src={product.productImg}
           alt={product.productName}
+          onClick={() => {
+            navigate(`/products/product/${product.productId}`);
+          }}
         />
-        <WrapBox>
+        <WrapBox
+          onClick={() => {
+            navigate(`/products/product/${product.productId}`);
+          }}
+        >
           <ProductTitle>{product.productName}</ProductTitle>
           <ProductPrice>{formattedValue(product.productPrice)}</ProductPrice>
         </WrapBox>
@@ -68,6 +77,7 @@ export default function ProductCart({ product }: { product: CartType }) {
 const Image = styled.img`
   width: 60px;
   border-radius: 5px;
+  cursor: pointer;
 `;
 
 const ProductCartWrap = styled.main`
@@ -93,6 +103,7 @@ const ProductCartWrap = styled.main`
 
 const InfoBox = styled.div`
   display: flex;
+  cursor: pointer;
 `;
 
 const WrapBox = styled.div`
@@ -119,6 +130,8 @@ const Button = styled.button`
   color: #ffffff;
   font-weight: 500;
   font-size: 10px;
+
+  cursor: pointer;
 `;
 
 const ProductPrice = styled.h5`
