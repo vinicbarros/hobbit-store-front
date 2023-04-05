@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { QueryClient } from "react-query";
 import { ProductType } from "../../types/productTypes";
 import formattedValue from "../../helpers/formatValue";
 import AddToCartButton from "../Cart/AddToCartButton";
