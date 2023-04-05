@@ -130,6 +130,9 @@ const Button = styled.button`
   color: #ffffff;
   font-weight: 500;
   font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   cursor: pointer;
 `;
