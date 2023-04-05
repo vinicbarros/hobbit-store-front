@@ -10,6 +10,10 @@ Esse projeto é parte de um processo seletivo da MyPharma para a vaga de Engenhe
 
 O objetivo do projeto técnico era criar um E-Commerce full stack com React + Node + MongoDB.
 
+<div align=center style="display:flex; justify-content: center; gap:5%">
+    <img src="https://i.imgur.com/UEOKm70.png">
+</div>
+
 ## Requisitos do case:
 
 - [x] Search por nome do produto
