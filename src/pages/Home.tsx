@@ -9,7 +9,7 @@ import { getProducts } from "../services/productService";
 
 export default function Home() {
   const productsData = useQuery("products", getProducts, {
-    retry: false,
+    retry: true,
     onError: (err: AxiosError) => err,
   });
 
