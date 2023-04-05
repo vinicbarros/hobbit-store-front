@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import { GlobalStyle } from "./style/GlobalStyle";
 import Cart from "./pages/Cart";
 import ProductPage from "./pages/ProductPage";
+import CategoryPage from "./pages/CategoryPage";
 
 function App() {
   const queryClient = new QueryClient();
@@ -41,6 +42,10 @@ function App() {
             <Route
               path="/products/product/:productId"
               element={<ProductPage />}
+            />
+            <Route
+              path="/products/:category"
+              element={<CategoryPage />}
             />
           </Route>
         </Routes>
