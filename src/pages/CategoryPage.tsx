@@ -16,12 +16,29 @@ export default function CategoryPage() {
     return getProductsByCategory(category);
   };
 
-  const { data, isLoading } = useQuery("products", getProductsWithCategory, {
+  const { data, isLoading } = useQuery("productsCategory", getProductsWithCategory, {
     retry: false,
     onError: (err: AxiosError) => err,
   });
 
   if (isLoading || !data) {
+    return (
+      <>
+        <Header />
+        <LoadingPage />
+      </>
+    );
+  }
+
+  const checkCategory = () => {
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].category !== category) return false;
+    }
+    return true;
+  };
+
+  if (!checkCategory()) {
     return (
       <>
         <Header />
