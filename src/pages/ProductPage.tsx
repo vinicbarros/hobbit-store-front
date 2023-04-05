@@ -19,7 +19,7 @@ export default function ProductPage() {
   };
 
   const { data, isLoading } = useQuery("product", getProductWithId, {
-    retry: false,
+    retry: true,
     onError: (err: AxiosError) => err,
   });
 
@@ -30,6 +30,15 @@ export default function ProductPage() {
         <LoadingPage />
       </>
     );
+
+  if (data._id !== productId) {
+    return (
+      <>
+        <Header />
+        <LoadingPage />
+      </>
+    );
+  }
 
   return (
     <>
