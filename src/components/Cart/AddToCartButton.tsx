@@ -52,28 +52,11 @@ export default function AddToCartButton({ itemId, page }: { itemId: string; page
   );
 }
 
-const Buttodn = styled.button`
-  border: none;
-  border-radius: 5px;
-
-  font-weight: 600;
-  font-size: 11px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-
-  &:disabled {
-    background-color: #432c5c;
-  }
-`;
-
 const Button = styled.button<IButtonProps>`
   border: none;
   border-radius: 5px;
   margin-top: ${(props) => (props.page === "produto" ? "35px" : "0px")};
-  width: ${(props) => (props.page === "produto" ? "45%" : "")};
+  width: ${(props) => (props.page === "produto" ? "45%" : "110px")};
   align-self: center;
   height: ${(props) => (props.page === "produto" ? "50px" : "32px")};
   background-color: #644684;
@@ -81,6 +64,7 @@ const Button = styled.button<IButtonProps>`
   font-weight: 600;
   font-family: "Poppins";
   font-size: ${(props) => (props.page === "produto" ? "" : "10px")};
+  cursor: pointer;
 
   @media screen and (min-width: 600px) {
     max-width: 300px;
@@ -89,6 +73,13 @@ const Button = styled.button<IButtonProps>`
     & + & {
       margin-left: 20px;
     }
+  }
+
+  &:disabled {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #432c5c;
   }
 `;
 
