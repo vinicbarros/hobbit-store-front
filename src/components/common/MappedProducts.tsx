@@ -1,22 +1,27 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { ProductType } from "../../types/productTypes";
+import FilterByComponent from "../Products/FilterByComponent";
+import MapProductsComponent from "../Products/MapProductsComponent";
 import LoadingPage from "./LoadingPage";
-import ShortProductComponent from "./ShortProduct";
 
 export default function MappedProducts({ data }: { data: ProductType[] }) {
+  const [selectState, setSelectState] = useState("default");
+
   return (
-    <Wrapper>
-      {data.length > 0 ? (
-        data.map((product) => (
-          <ShortProductComponent
-            key={product._id}
-            shortProduct={product}
+    <>
+      <FilterByComponent setSelectState={setSelectState} />
+      <Wrapper>
+        {data.length > 0 ? (
+          <MapProductsComponent
+            data={data}
+            option={selectState}
           />
-        ))
-      ) : (
-        <LoadingPage />
-      )}
-    </Wrapper>
+        ) : (
+          <LoadingPage />
+        )}
+      </Wrapper>
+    </>
   );
 }
 
