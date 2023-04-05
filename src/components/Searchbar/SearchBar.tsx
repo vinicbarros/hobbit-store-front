@@ -4,11 +4,12 @@ import { BsSearch } from "react-icons/bs";
 import { GrClose } from "react-icons/gr";
 import { DebounceInput } from "react-debounce-input";
 import { useState } from "react";
-import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
 import { ProductType } from "../../types/productTypes";
 import { searchProduct } from "../../services/searchService";
 
 export function SearchBar() {
+  const navigate = useNavigate();
   const [wordEntered, setWordEntered] = useState("");
   const [search, setSearch] = useState<ProductType[]>([] as ProductType[]);
 
@@ -56,7 +57,18 @@ export function SearchBar() {
       {search.length !== 0 && (
         <DataResult>
           {search.map((product) => (
-            <h1 key={product._id}>{product.name}</h1>
+            <ProductWrap
+              key={product._id}
+              onClick={() => {
+                navigate(`/products/product/${product._id}`);
+              }}
+            >
+              <ProductImage
+                src={product.image}
+                alt={product.name}
+              />
+              <ProductTitle>{product.name}</ProductTitle>
+            </ProductWrap>
           ))}
         </DataResult>
       )}
@@ -121,37 +133,22 @@ const DataResult = styled.section`
   border-radius: 0px 0px 10px 10px;
 `;
 
-const PersonWrap = styled.div`
-  background-color: #ffffff;
-  height: 50px;
-  border-radius: 5px;
+const ProductWrap = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding-inline: 10px;
+  cursor: pointer;
+
   & + & {
-    margin-top: 10px;
-  }
-
-  p {
-    margin-left: 10px;
-    color: #828282;
-    font-weight: bold;
-  }
-
-  h4 {
-    color: #828282;
-  }
-
-  h5 {
-    background-color: #e7e7e7;
-    color: #373737;
-    padding: 5px;
-    border-radius: 3px;
+    margin-top: 8px;
   }
 `;
 
-const NameWrap = styled.div`
-  display: flex;
-  align-items: center;
+const ProductTitle = styled.h3`
+  color: #442e21;
+  margin-left: 5px;
+`;
+
+const ProductImage = styled.img`
+  width: 30px;
+  border-radius: 5px;
 `;
