@@ -59,7 +59,7 @@ O objetivo do projeto técnico era criar um E-Commerce full stack com React + No
 
 4. Crie e popule o arquivo `.env` de acordo com o exemplo dado no `.env.example` com a variável `VITE_BASE_URL`, 
    essa variável deve apontar para a URL da sua API (back-end), por isso, certifique-se de seguir os passos corretamente ao rodar o back-end. 
-   Siga as instruções de como rodar a API por aqui: <a href="https://github.com/vinicbarros/case-take-a-bus-api">Como rodar a API.</a>
+   Siga as instruções de como rodar a API por aqui: <a href="https://github.com/vinicbarros/hobbit-store-back">Como rodar a API.</a>
 
 
 4. Rode a aplicação
